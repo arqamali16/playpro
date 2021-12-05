@@ -1,8 +1,15 @@
 import React from "react";
 import { Button, Card, Form, Input, Typography, Checkbox } from "antd";
+import { useActions } from "kea";
+
+import SignupLogic from "../Redux/signupLogics";
 
 const SignupStep3 = (props: any): any => {
+  const [form] = Form.useForm();
+  const { getSignupDetails } = useActions(SignupLogic);
+
   const { next } = props;
+
   return (
     <div className="signup-wrapper">
       <Card className="signup-card">

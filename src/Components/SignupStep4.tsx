@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Card, Form, Input, Typography, Radio } from "antd";
+import { useActions } from "kea";
+
+import SignupLogic from "../Redux/signupLogics";
 
 const SignupStep4 = (props: any): any => {
+  const [form] = Form.useForm();
+  const { getSignupDetails, signup } = useActions(SignupLogic);
+
+  const [isPersonal, setIsPersonal] = useState(true);
+
   const { next } = props;
+
+  const onEmailTypeChange = ({ target }: any) => {
+    setIsPersonal(target.value === "school" ? true : false);
+  };
+
+  const onSignup = () => {
+    form.validateFields().then((values) => {
+      getSignupDetails(values);
+      signup();
+    });
+  };
+
   return (
     <div className="signup-wrapper">
       <Card className="signup-card">
@@ -13,15 +33,25 @@ const SignupStep4 = (props: any): any => {
           Is abc@xyz.com your personal or school email address?
         </p>
 
-        <Form>
+        <Form form={form}>
           <Form.Item>
-            <Radio.Group>
-              <Radio value={1}>Personal</Radio>
-              <Radio value={2}>School</Radio>
+            <Radio.Group onChange={onEmailTypeChange}>
+              <Radio value={"personal"}>Personal</Radio>
+              <Radio value={"school"}>School</Radio>
             </Radio.Group>
           </Form.Item>
-          <Form.Item label="Provide Your School Email Address">
-            <Input placeholder="Enter Email ID"></Input>
+          <Form.Item
+            label="Provide Your School Email Address"
+            name="schoolEmail"
+            rules={[
+              {
+                required: !isPersonal ? true : false,
+                type: "email",
+                message: "Please input your scool email!",
+              },
+            ]}
+          >
+            <Input placeholder="Enter Email ID" disabled={isPersonal}></Input>
           </Form.Item>
           <p className="sub-heading">
             We use your personal email to create your PlayPRO account, while a
@@ -29,7 +59,7 @@ const SignupStep4 = (props: any): any => {
             competitions.
           </p>
           <Form.Item className="align-center">
-            <Button className="signup-button" onClick={() => next()}>
+            <Button className="signup-button" onClick={onSignup}>
               CONTINUE
             </Button>
           </Form.Item>
