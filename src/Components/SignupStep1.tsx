@@ -57,7 +57,7 @@ const SignupStep1 = (props: any) => {
               },
             ]}
           >
-            <Input placeholder="Password"></Input>
+            <Input.Password placeholder="Password"></Input.Password>
           </Form.Item>
           <Form.Item>
             <Checkbox>I agree the Terms and Conditions</Checkbox>

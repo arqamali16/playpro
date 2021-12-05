@@ -61,6 +61,7 @@ const LoginLogic = kea({
           { headers }
         );
       } catch (err) {
+        console.log(err);
         notification.error({
           message: "Adding user falied",
           description: _.get(err, "message", ""),
