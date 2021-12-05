@@ -102,6 +102,10 @@ span.ant-radio + * {
   text-align: left !important;
 }
 
+.ant-input-password {
+  background: #c4c4c4 !important;
+}
+
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops
