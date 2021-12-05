@@ -1,3 +1,7 @@
+/**
+ * @author Mohammed Arqam Ali Saad <arqam.ali16@gmail.com>
+ * @description Signup screen
+ */
 import React, { useState } from "react";
 
 import SignupStep1 from "../../Components/SignupStep1";
