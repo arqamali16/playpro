@@ -6,7 +6,6 @@ import SignupLogic from "../Redux/signupLogics";
 
 const SignupStep1 = (props: any) => {
   const [form] = Form.useForm();
-  const { signupDetails } = useValues(SignupLogic);
   const { getSignupDetails } = useActions(SignupLogic);
 
   const { next } = props;
@@ -17,8 +16,6 @@ const SignupStep1 = (props: any) => {
       next();
     });
   };
-
-  console.log(signupDetails);
 
   return (
     <div className="signup-wrapper">

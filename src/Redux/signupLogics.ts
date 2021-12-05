@@ -53,8 +53,9 @@ const LoginLogic = kea({
         user_school: "Cornell University",
         user_grad_yr: "2022",
       };
+
       try {
-        const res = axios.post(
+        const res = await axios.post(
           "https://jn3529pnk8.execute-api.us-east-1.amazonaws.com/dev/users",
           { mode: "raw", raw: JSON.stringify(studentPayload) },
           { headers }
