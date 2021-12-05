@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Card, Form, Input, Typography, DatePicker } from "antd";
 import { useActions } from "kea";
+import moment from "moment";
 
 import SignupLogic from "../Redux/signupLogics";
 
@@ -58,7 +59,10 @@ const SignupStep2 = (props: any) => {
               },
             ]}
           >
-            <DatePicker placeholder="Date of Birth" />
+            <DatePicker
+              placeholder="Date of Birth"
+              disabledDate={(d) => d.isAfter(moment())}
+            />
           </Form.Item>
           <p className="sub-heading">
             We use your date of birth to determine eligibility for certain
